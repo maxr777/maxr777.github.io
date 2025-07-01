@@ -11,13 +11,8 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-}
-
-main {
-  margin-top: 15rem;
-  margin-left: 48rem;
-  margin-right: 48rem;
-  flex: 1;
+  background-color: #0f0f23;
+  color: #e4e4e7;
 }
 
 footer {
@@ -25,10 +20,11 @@ footer {
   margin-bottom: 1rem;
   width: 100%;
   text-align: center;
-  color: #999;
+  color: #94a3b8;
 }
 
 .homepage-main a {
+  padding-top: 0.5rem;
   display: inline-block;
   width: fit-content;
   font-size: 1.5rem;
@@ -40,9 +36,15 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .homepage-main {
+  margin-top: 15rem;
+  margin-left: 48rem;
+  margin-right: 48rem;
+  flex: 1;
   display: inline-block;
   position: relative;
 }
+
+/* main page hover stuff */
 
 .hover-underline-animation {
   display: inline-block;
@@ -57,7 +59,7 @@ a:link, a:visited, a:hover, a:active {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #0087ca;
+  background-color: #e4e4e7;
   transition: transform 0.25s ease-out;
 }
 
