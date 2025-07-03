@@ -24,7 +24,7 @@ body {
 header {
   flex: 1;
   text-align: left;
-  margin-top: 2rem;
+  padding-top: 2rem;
   margin-bottom: 1rem;
   /* display: flex; */
   /* align-items: center; */
@@ -33,31 +33,27 @@ header {
 header a {
   /* flex: 1; */
   /* flex-direction: row; */
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-right: 1rem;
 }
 
 main {
-  font-size: 1.2rem;
-  text-align: left;
-  text-justify: inter-word;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify;
 }
 
 footer {
   flex: 1;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  margin-top: 2rem;
   width: 100%;
   text-align: center;
   color: #757575;
 }
 
-.homepage-main a {
-  flex: 1;
-  padding: 1rem, 1rem, 1rem, 0;
-  display: inline-block;
-  width: fit-content;
-  font-size: 1.5rem;
+address {
+  padding-top: 0.5rem;
 }
 
 a:link,
