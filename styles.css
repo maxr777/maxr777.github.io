@@ -39,6 +39,10 @@ header a {
   margin-right: 1rem;
 }
 
+main a {
+  color: #26c6da;
+}
+
 main {
   font-size: 1rem;
   line-height: 1.5;
