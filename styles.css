@@ -21,15 +21,35 @@ body {
   overflow-x: hidden;
 }
 
+header {
+  flex: 1;
+  text-align: left;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+header a {
+  /* flex: 1; */
+  /* flex-direction: row; */
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+main {
+  font-size: 1.2rem;
+  text-align: left;
+  text-justify: inter-word;
+}
+
 footer {
+  flex: 1;
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 100%;
   text-align: center;
   color: #757575;
-}
-
-main {
 }
 
 .homepage-main a {
@@ -78,4 +98,3 @@ a:active {
 .hover-underline-animation.left:hover::after {
   transform-origin: bottom left;
 }
-
