@@ -1,7 +1,11 @@
-html,
-body {
+html {
+  display: flex;
+  width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
@@ -9,10 +13,12 @@ body {
     system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   text-align: center;
-  display: flex;
-  flex-direction: column;
   background-color: #121212;
   color: #f5f5f5;
+  padding: var(--line-height) 2ch;
+  max-width: calc(min(80ch, round(down, 100%, 1ch)));
+  line-height: var(--line-height);
+  overflow-x: hidden;
 }
 
 footer {
@@ -24,31 +30,25 @@ footer {
 }
 
 main {
-  
 }
 
 .homepage-main a {
-  padding-top: 0.5rem;
+  flex: 1;
+  padding: 1rem, 1rem, 1rem, 0;
   display: inline-block;
   width: fit-content;
   font-size: 1.5rem;
 }
 
-a:link, a:visited, a:hover, a:active {
-    color: inherit;
-    text-decoration: none;
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }
 
-.homepage-main {
-  margin-top: 15rem;
-  margin-left: 48rem;
-  margin-right: 48rem;
-  flex: 1;
-  display: inline-block;
-  position: relative;
-}
-
-/* main page hover stuff */
+/* hover underline animation */
 
 .hover-underline-animation {
   display: inline-block;
@@ -56,7 +56,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .hover-underline-animation::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -78,3 +78,4 @@ a:link, a:visited, a:hover, a:active {
 .hover-underline-animation.left:hover::after {
   transform-origin: bottom left;
 }
+
