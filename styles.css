@@ -17,8 +17,8 @@ body {
   background-color: #121212;
   color: #f5f5f5;
   padding: var(--line-height) 2ch;
-  min-width: calc(min(80ch, round(down, 100%, 1ch)));
-  max-width: calc(min(80ch, round(down, 100%, 1ch)));
+  width: min(80ch, 100vw - 4ch);
+  max-width: 80ch;
   line-height: var(--line-height);
   overflow-x: hidden;
 }
