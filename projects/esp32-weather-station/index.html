@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,7 +31,7 @@
     </header>
     <hr />
     <main>
-      <h3>ESP32 weather station</h3>
+      <h1>ESP32 weather station</h1>
       <p>
         I wanted to make a DIY weather station for some time&mdash;it's nice to
         know how the humidity affects my mousepad glide, the air quality around
@@ -41,12 +41,27 @@
         I first started with Arduino IDE to get the project working. It turned
         out I bought the wrong UV sensor (a newer version of the sensor I bought
         only had a light sensor, no UV), so I ended up making it with only
-        environmental and air quality sensors. Anyway, I got the project working
-        with pre-made libraries in Arduino IDE. It's pretty much a plug-and-play
-        process there, so I decided to make it in ESP-IDF too&mdash;this time
-        reading to and from the sensors/screens myself. This way I'd actually
-        learn how it works&mdash;things like reading from a sensor, using I2C
-        and UART, and displaying stuff on a screen.
+        environmental and air quality sensors. I also got a button to switch the
+        screens on my OLED (e.g. screen1: environmental stats, screen2: air
+        quality), but it ended up not reaching my breadboard when plugged in, so
+        I gave up on that.
+      </p>
+      <img src="1.jpg" alt="working station" />
+      <p>
+        The weather sensor required some soldering to stay in place (it would
+        randomly disconnect if it was just propped up by something), so I
+        borrowed a soldering gun and did my first soldering work ever. The gun
+        was definitely too imprecise for electronics, and my skills were also
+        ass, but it does work even if it looks bad.
+      </p>
+      <h3>Actually learning stuff from it</h3>
+      <p>
+        I got the project working with pre-made libraries in Arduino IDE. It's
+        pretty much a plug-and-play process there, so I decided to make it in
+        ESP-IDF too&mdash;this time reading to and from the sensors/screens
+        myself. This way I'd actually learn how everything works&mdash;things
+        like reading from a sensor, using I2C and UART, and displaying stuff on
+        a screen.
       </p>
       <p>TODO</p>
     </main>
