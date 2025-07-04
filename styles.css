@@ -98,6 +98,13 @@ footer a:active {
   text-decoration: none;
 }
 
+.no-indent {
+  margin-left: 1.5rem;
+  padding-left: 0;
+  text-indent: 0;
+  /* list-style: none; */
+}
+
 /* hover underline animation */
 
 .hover-underline-animation {
