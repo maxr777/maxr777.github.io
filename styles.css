@@ -32,6 +32,14 @@ header {
   /* align-items: center; */
 }
 
+header a.current-page,
+header a.current-page:link,
+header a.current-page:visited,
+header a.current-page:hover,
+header a.current-page:active {
+  color: #ffa726;
+}
+
 header a {
   /* flex: 1; */
   /* flex-direction: row; */
