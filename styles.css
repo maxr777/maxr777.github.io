@@ -50,7 +50,8 @@ header a {
 main {
   font-size: 1rem;
   line-height: 1.5;
-  text-align: justify;
+  /* text-align: justify; */
+  text-align: left;
   width: 100%;
   min-width: 100%;
 }
@@ -83,6 +84,10 @@ img {
   /* last two are for centering if I wanna try out <100% width again */
   display: block;
   margin: 0 auto;
+}
+
+.image-container {
+  margin: 1.5rem 0;
 }
 
 .image-description {
