@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,97 +7,58 @@
   </head>
   <body>
     <header>
-      <a
-        class="hover-underline-animation left"
-        href="/"
-        target="_self"
-        rel="noopener noreferrer"
-        >Home</a
-      >
-      <a
-        class="hover-underline-animation left current-page"
-        href="/projects/"
-        target="_self"
-        rel="noopener noreferrer"
+      <a class="hover-underline-animation left" href="/" target="_self" rel="noopener noreferrer">Home</a>
+      <a class="hover-underline-animation left current-page" href="/projects/" target="_self" rel="noopener noreferrer"
         >Projects</a
       >
-      <a
-        class="hover-underline-animation left"
-        href="/articles/"
-        target="_self"
-        rel="noopener noreferrer"
-        >Articles</a
-      >
+      <a class="hover-underline-animation left" href="/articles/" target="_self" rel="noopener noreferrer">Articles</a>
     </header>
     <hr />
     <main>
       <h1>ESP32 weather station</h1>
       <p>
-        I wanted to make a DIY weather station for some time&mdash;it's nice to
-        know how the humidity affects my mousepad glide, the air quality around
-        me, and the UV index (for sunscreen).
+        I wanted to make a DIY weather station for some time&mdash;it's nice to know how the humidity affects my
+        mousepad glide, the air quality around me, and the UV index (for sunscreen).
       </p>
       <p>
-        I first started with Arduino IDE to get the project working. It turned
-        out I bought the wrong UV sensor (a newer version of the sensor I bought
-        only had a light sensor, no UV), so I ended up making it with only
-        environmental and air quality sensors. I also got a button to switch the
-        screens on my OLED (e.g. screen1: environmental stats, screen2: air
-        quality), but it ended up not reaching my breadboard when plugged in, so
-        I gave up on that.
+        I first started with Arduino IDE to get the project working. It turned out I bought the wrong UV sensor (a newer
+        version of the sensor I bought only had a light sensor, no UV), so I ended up making it with only environmental
+        and air quality sensors. I also got a button to switch the screens on my OLED (e.g. screen1: environmental
+        stats, screen2: air quality), but it ended up not reaching my breadboard when plugged in, so I gave up on that.
       </p>
       <p>
-        Initially I also had an RTC connected to it but I ended up disconnecting
-        the station too often for it to make sense&mdash;I'd have to set the
-        correct time each time after unplugging it for longer amounts of time.
+        Initially, I also had an RTC connected to it, but I ended up disconnecting the station too often for it to make
+        sense&mdash;I'd have to set the correct time each time after unplugging it for longer amounts of time.
       </p>
       <div class="image-container">
         <img src="1.jpg" width="2000" hright="1506" alt="working station" />
       </div>
       <p>
-        The weather sensor required some soldering to stay in place (it would
-        randomly disconnect if it was just propped up by something), so I
-        borrowed a soldering gun and did my first soldering work ever. The gun
-        was definitely too imprecise for electronics, and my skills were also
-        ass, but it did work even if it looks bad. It's more solid now but I
-        still have to wiggle it around sometimes, probably because I didn't use
-        any flux and just rawdogged it with solder+gun.
+        The weather sensor required some soldering to stay in place (it would randomly disconnect if it was just propped
+        up by something), so I borrowed a soldering gun and did my first soldering work ever. The gun was definitely too
+        imprecise for electronics, and my skills were also ass, but it did work even if it looks bad. It's more solid
+        now, but I still have to wiggle it around sometimes, probably because I didn't use any flux and just rawdogged
+        it with solder+gun.
       </p>
       <div class="image-container">
-        <img
-          src="2.jpg"
-          width="2000"
-          height="1506"
-          alt="bad air quality example"
-        />
+        <img src="2.jpg" width="2000" height="1506" alt="bad air quality example" />
         <p class="image-description">air quality close to a forest fire</p>
       </div>
       <h3>Actually learning stuff from it</h3>
       <p>
-        I got the project working with pre-made libraries in Arduino IDE. It's
-        pretty much a plug-and-play process there, so I decided to make it in
-        ESP-IDF too&mdash;this time reading to and from the sensors/screens
-        myself. This way I'd actually learn how everything works&mdash;things
-        like reading from a sensor, using I2C and UART, and displaying stuff on
-        a screen.
+        I got the project working with pre-made libraries in Arduino IDE. It's pretty much a plug-and-play process
+        there, so I decided to make it in ESP-IDF too&mdash;this time reading to and from the sensors/screens myself.
+        This way I'd actually learn how everything works&mdash;things like reading from a sensor, using I2C and UART,
+        and displaying stuff on a screen.
       </p>
+      <p></p>
       <p>TODO</p>
     </main>
     <footer>
       &copy; 2025 Max Romanowski
       <address>
-        <a
-          href="https://github.com/maxr777"
-          target="_self"
-          rel="noopener noreferrer"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+        <a href="https://github.com/maxr777" target="_self" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M12 0.5C5.649 0.5 0.5 5.649 0.5 12C0.5 17.067 3.787 21.34 8.369 22.862C8.969 22.971 9.192 22.627 9.192 22.332C9.192 22.069 9.18 21.209 9.175 20.324C6.004 21.046 5.284 18.893 5.284 18.893C4.741 17.558 3.937 17.214 3.937 17.214C2.835 16.468 4.018 16.484 4.018 16.484C5.238 16.569 5.891 17.697 5.891 17.697C6.975 19.536 8.708 19.003 9.217 18.721C9.327 17.924 9.649 17.393 10.004 17.118C7.401 16.84 4.663 15.817 4.663 11.548C4.663 10.287 5.138 9.258 5.915 8.45C5.789 8.171 5.371 7.002 6.033 5.432C6.033 5.432 7.047 5.132 9.163 6.546C10.133 6.304 11.174 6.183 12.21 6.178C13.246 6.183 14.287 6.304 15.258 6.546C17.372 5.132 18.385 5.432 18.385 5.432C19.048 7.002 18.63 8.171 18.504 8.45C19.282 9.258 19.755 10.287 19.755 11.548C19.755 15.827 17.013 16.837 14.404 17.109C14.839 17.486 15.24 18.227 15.24 19.361C15.24 20.988 15.225 22.299 15.225 22.332C15.225 22.63 15.446 22.977 16.055 22.86C20.634 21.335 23.917 17.065 23.917 12C23.917 5.649 18.768 0.5 12.417 0.5H12Z"
               fill="currentColor"
@@ -105,13 +66,7 @@
           </svg>
         </a>
         <a href="mailto:personalsite.grape963@passinbox.com">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
               stroke="currentColor"
