@@ -80,16 +80,10 @@ address {
 iframe {
   max-width: 100%;
   width: 100%;
-  height: 40vh;
+  aspect-ratio: 16/9;
+  height: auto;
   display: block;
   margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  iframe {
-    aspect-ratio: 16/9;
-    height: auto;
-  }
 }
 
 img {
