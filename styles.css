@@ -85,6 +85,13 @@ iframe {
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  iframe {
+    aspect-ratio: 16/9;
+    height: auto;
+  }
+}
+
 img {
   max-width: 100%;
   width: 100%;
