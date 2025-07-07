@@ -77,6 +77,14 @@ address {
   padding-top: 0.5rem;
 }
 
+iframe {
+  max-width: 100%;
+  width: 100%;
+  height: 40vh;
+  display: block;
+  margin: 0 auto;
+}
+
 img {
   max-width: 100%;
   width: 100%;
@@ -86,11 +94,11 @@ img {
   margin: 0 auto;
 }
 
-.image-container {
+.media-container {
   margin: 1.5rem 0;
 }
 
-.image-description {
+.media-description {
   color: #9e9e9e;
   font-size: 0.9em;
   font-weight: normal;
