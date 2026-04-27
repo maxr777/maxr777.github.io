@@ -1,3 +1,12 @@
+:root {
+  --line-height: 1.5;
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --secondary-color: #666666;
+  --accent-color: #a04000;
+  --border-color: #eeeeee;
+}
+
 html {
   display: flex;
   width: 100%;
@@ -10,142 +19,250 @@ html {
 }
 
 body {
-  font-family:
-    system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", "Georgia", serif;
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: "kern", "liga", "clig", "calt";
   text-align: center;
-  background-color: #121212;
-  color: #f5f5f5;
-  padding: var(--line-height) 2ch;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 1.5rem 2ch;
   width: min(80ch, 100vw - 4ch);
   max-width: 80ch;
-  line-height: var(--line-height);
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Stable Entrance */
+header, main, footer {
+  animation: fadeIn 0.5s cubic-bezier(0.2, 0, 0.2, 1) both;
+}
+
+/* Minimal Scrollbar - More Visible */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 2px solid var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Physical Feedback */
+header a:active, main a:active, .footer-right a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+::selection {
+  background-color: rgba(160, 64, 0, 0.15);
+  color: var(--text-color);
 }
 
 header {
-  flex: 1;
   text-align: left;
-  padding-top: 2rem;
+  padding-top: 1rem;
   margin-bottom: 1rem;
-  /* display: flex; */
-  /* align-items: center; */
-}
-
-header a.current-page,
-header a.current-page:link,
-header a.current-page:visited,
-header a.current-page:hover,
-header a.current-page:active {
-  color: #ffa726;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 header a {
-  /* flex: 1; */
-  /* flex-direction: row; */
-  font-size: 1.5rem;
-  margin-right: 1rem;
+  font-size: 1.1rem;
+  margin-right: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  opacity: 0.8;
+}
+
+header a.current-page {
+  color: var(--accent-color);
+  font-weight: 500;
+  opacity: 1;
+}
+
+header a:hover {
+  opacity: 1;
 }
 
 main {
-  font-size: 1rem;
-  line-height: 1.5;
-  /* text-align: justify; */
+  font-size: 1.05rem;
+  line-height: 1.65;
   text-align: left;
   width: 100%;
-  min-width: 100%;
+}
+
+main p {
+  margin-bottom: 1.25rem;
 }
 
 .date {
-  color: #757575;
-  font-size: 0.9em;
-  font-weight: normal;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--secondary-color);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
   display: block;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
 }
 
 footer {
-  flex: 1;
-  padding-bottom: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   width: 100%;
-  text-align: center;
-  color: #757575;
+  border-top: 1px solid #f0f0f0;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
-address {
-  padding-top: 0.5rem;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
 }
 
-iframe {
-  max-width: 100%;
-  width: 100%;
-  aspect-ratio: 16/9;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: var(--accent-color);
+  width: 0%;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+  opacity: 0;
 }
 
-img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  /* last two are for centering if I wanna try out <100% width again */
-  display: block;
-  margin: 0 auto;
+#email-link.copied {
+  color: var(--accent-color);
+  transition: color 0.2s;
 }
 
-.media-container {
+.footer-right a {
+  margin-left: 1.5rem;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.footer-right a:hover {
+  color: var(--text-color);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #f0f0f0;
   margin: 1.5rem 0;
 }
 
-.media-description {
-  color: #9e9e9e;
-  font-size: 0.9em;
-  font-weight: normal;
-  display: block;
-  padding-bottom: 0.5rem;
-  text-align: center;
-}
-
-header a:link,
-header a:visited,
-header a:hover,
-header a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
-main a:link {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid #f5f5f5;
-}
-
-main a:visited,
-main a:hover,
-main a:active {
-  color: #c0c0c0;
-  opacity: 0.8;
-  border-bottom: 1px solid #c0c0c0;
-}
-
-footer a:link,
-footer a:visited,
-footer a:hover,
-footer a:active {
-  color: inherit;
-  text-decoration: none;
+/* Rest of your functional styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .no-indent {
-  margin-left: 1.5rem;
+  list-style: none;
   padding-left: 0;
-  text-indent: 0;
-  /* list-style: none; */
 }
 
-/* hover underline animation */
+.no-indent li {
+  margin-bottom: 1rem;
+}
+
+header a:link, header a:visited, header a:hover, header a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+main a {
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+  transition: all 0.2s ease;
+}
+
+main a:visited {
+  color: var(--text-color);
+}
+
+main a:hover, main a:active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+/* Media & Lightbox */
+img, iframe {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: transform 0.1s;
+}
+
+img {
+  cursor: zoom-in;
+}
+
+img:active {
+  transform: scale(0.99);
+}
+
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  cursor: zoom-out;
+}
 
 .hover-underline-animation {
   display: inline-block;
@@ -157,11 +274,11 @@ footer a:active {
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
+  height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #e4e4e7;
-  transition: transform 0.25s ease-out;
+  background-color: var(--text-color);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-underline-animation:hover::after {

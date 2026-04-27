@@ -4,101 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>esp32 weather station</title>
-    <link rel="icon" type="image/png" href="/skibidi.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../script.js" defer></script>
   </head>
   <body>
     <header>
-      <a class="hover-underline-animation left" href="/" target="_self" rel="noopener noreferrer">Home</a>
-      <a class="hover-underline-animation left current-page" href="/projects/" target="_self" rel="noopener noreferrer"
-        >Projects</a
-      >
-      <a class="hover-underline-animation left" href="/articles/" target="_self" rel="noopener noreferrer">Articles</a>
+      <a class="hover-underline-animation left" href="/">Home</a>
+      <a class="hover-underline-animation left current-page" href="/projects/">Projects</a>
+      <a class="hover-underline-animation left" href="/articles/">Articles</a>
     </header>
     <hr />
     <main>
-      <h1>ESP32 weather station</h1>
-      <p>
-        I wanted to make a DIY weather station for some time&mdash;it's nice to know how the humidity affects my
-        mousepad glide, the air quality around me, and the UV index (for sunscreen).
-      </p>
-      <p>
-        I first started with Arduino IDE to get the project working. It turned out I bought the wrong UV sensor (a newer
-        version of the sensor I bought only had a light sensor, no UV), so I ended up making it with only environmental
-        and air quality sensors. I also got a button to switch the screens on my OLED (e.g. screen1: environmental
-        stats, screen2: air quality), but it ended up not reaching my breadboard when plugged in, so I gave up on that.
-      </p>
-      <p>
-        Initially, I also had an RTC connected to it, but I ended up disconnecting the station too often for it to make
-        sense&mdash;I'd have to set the correct time each time after unplugging it for longer amounts of time.
-      </p>
-      <div class="media-container">
-        <img src="1.jpg" width="2000" height="1506" alt="working station" />
-      </div>
-      <p>
-        The weather sensor required some soldering to stay in place (it would randomly disconnect if it was just propped
-        up by something), so I borrowed a soldering gun and did my first soldering work ever. The gun was definitely too
-        imprecise for electronics, and my skills were also ass, but it did work even if it looks bad. It's more solid
-        now, but I still have to wiggle it around sometimes, probably because I didn't use any flux and just rawdogged
-        it with solder+gun.
-      </p>
-      <div class="media-container">
-        <img src="2.jpg" width="2000" height="1506" alt="bad air quality example" />
-        <p class="media-description">air quality close to a forest fire</p>
-      </div>
-      <h3>2026 Soldering update</h3>
-      <div class="media-container">
-        <img src="3.jpg" width="2000" height="2667" alt="better solder" />
-        <p class="improved soldering"></p>
-      </div>
-				<p>After getting an actual setup for soldering I went back to improve it. Having flux and an actual soldering iron
-					(Fnirsi HS-02A) helped a lot. I think it looks decent now, but I used too high of a temperature (335 degrees C,
-					I now use 305 degrees C) and the PCB looks a little burnt but it works just fine. I tested the connections with
-					a multimeter and everything works fine.
+			<p>I made a simple weather station a while ago, and I recently decided to make it from scratch, Handmade Hero style.</p>
 
-      <h3>Actually learning stuff from it</h3>
-      <p>
-        I got the project working with pre-made libraries in Arduino IDE. It's pretty much a plug-and-play process
-        there, so I decided to make it in ESP-IDF too&mdash;this time reading to and from the sensors/screens myself.
-        This way I'd actually learn how everything works&mdash;things like reading from a sensor, using I2C and UART,
-        and displaying stuff on a screen.
-      </p>
-      <p></p>
-      <p>TODO</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/4yA_y9Lus5Y" allowfullscreen></iframe>
+
+			<p>Wiring it on breadboard was pretty simple. I learned some stuff about pull-up resistors and diodes.</p>
+
+			<p>Coding it was the hard part, since I wanted to make everything myself. The BME280 was a bit hard to setup, but getting the SH1106 was the hardest part. So many small details (write A to B, then C to D, in that order, if you want to do X, but if you want to do Y do E to B first, then C to D, etc.). Thank god for Claude - made reading the datasheets so much easier.</p>
+
+			<p>I'm pretty happy with how it turned out, but I haven't finished making it really robust (able to plug in and out boards while it's running without restarting) - I go more into that at the end of this article. I was also trying out new stuff - especially Raylib's way of naming things and header only libraries. Regarding Raylib's way of naming things, it looks nice (camelCase for variables, PascalCase for functions), but it gets a bit problematic (e.g. 0 followed by O, or acronyms: e.g. GetLEDGPIO). I think <a href="https://tigerstyle.dev/#nouns-and-verbs">TigerStyle's</a> way of naming things is much better, and I'll use it with my next project.</p>
+
+			<p>After somewhat finishing it, I decided to make it more robust by moving the project onto a perfboard. Honestly, it was such a hassle - if I were to do it now, I'd just design and order a custom PCB. I think I could've placed some components on the board better, and I'm also not that good with soldering, so the result looks a bit meh, but it works and is noticeably more structurally solid (e.g. I can spin it around by the PMS5003 while it works - no issues). At the end of the day, I don't think it matters much since I'll keep it in a 3D enclosure anyway (and if I wanted to make it look more professional, designing and ordering a PCB is the way to go anyway).</p>
+
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/DK9z5tJ5IRI" allowfullscreen></iframe>
+
+			<p>Unfortunately, I fried the BME280 while trying to make the station more robust (so that it can plug stuff in and out while it's running without any problems) - while testing changes to code, I mistakenly plugged the BME280 one pin off. I felt it getting really warm, and, by that time, it was already too late.</p>
+
+			<p>The end goal was to make some simple 3D enclosure for it (with some ample openings for airflow, of course), but now that it doesn't work it would be kinda pointless (can't showcase nor use it). I'll do that after I get another BME280 board - it's not exactly the cheapest weather sensor, but at this point I don't really care about rewriting the code, just want to get it to work.</p>
     </main>
     <footer>
-      &copy; 2026 Max Romanowski
-      <address>
-        <a href="https://github.com/maxr777" target="_self" rel="noopener noreferrer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 0.5C5.649 0.5 0.5 5.649 0.5 12C0.5 17.067 3.787 21.34 8.369 22.862C8.969 22.971 9.192 22.627 9.192 22.332C9.192 22.069 9.18 21.209 9.175 20.324C6.004 21.046 5.284 18.893 5.284 18.893C4.741 17.558 3.937 17.214 3.937 17.214C2.835 16.468 4.018 16.484 4.018 16.484C5.238 16.569 5.891 17.697 5.891 17.697C6.975 19.536 8.708 19.003 9.217 18.721C9.327 17.924 9.649 17.393 10.004 17.118C7.401 16.84 4.663 15.817 4.663 11.548C4.663 10.287 5.138 9.258 5.915 8.45C5.789 8.171 5.371 7.002 6.033 5.432C6.033 5.432 7.047 5.132 9.163 6.546C10.133 6.304 11.174 6.183 12.21 6.178C13.246 6.183 14.287 6.304 15.258 6.546C17.372 5.132 18.385 5.432 18.385 5.432C19.048 7.002 18.63 8.171 18.504 8.45C19.282 9.258 19.755 10.287 19.755 11.548C19.755 15.827 17.013 16.837 14.404 17.109C14.839 17.486 15.24 18.227 15.24 19.361C15.24 20.988 15.225 22.299 15.225 22.332C15.225 22.63 15.446 22.977 16.055 22.86C20.634 21.335 23.917 17.065 23.917 12C23.917 5.649 18.768 0.5 12.417 0.5H12Z"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
-        <a href="mailto:personalsite.grape963@passinbox.com">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <rect
-              x="3"
-              y="5"
-              width="18"
-              height="14"
-              rx="2"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </a>
-      </address>
+      <div class="footer-content">
+        <div class="footer-left">Max Romanowski</div>
+        <div class="footer-right">
+          <a href="https://github.com/maxr777">GITHUB</a>
+          <a id="email-link" href="#">EMAIL</a>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
