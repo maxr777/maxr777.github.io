@@ -33,41 +33,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Stable Entrance */
-header, main, footer {
-  animation: fadeIn 0.5s cubic-bezier(0.2, 0, 0.2, 1) both;
-}
-
-/* Minimal Scrollbar - More Visible */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  border: 2px solid var(--bg-color);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-/* Physical Feedback */
-header a:active, main a:active, .footer-right a:active {
-  transform: scale(0.98);
-  transition: transform 0.1s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(2px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 ::selection {
   background-color: rgba(160, 64, 0, 0.15);
   color: var(--text-color);
@@ -225,10 +190,6 @@ img {
 
 img {
   cursor: zoom-in;
-}
-
-img:active {
-  transform: scale(0.99);
 }
 
 iframe {
