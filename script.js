@@ -31,8 +31,8 @@ function setupEmailProtection() {
   const emailLink = document.getElementById('email-link');
   if (!emailLink) return;
 
-  const user = 'personalsite.grape963';
-  const domain = 'passinbox.com';
+  const user = 'website';
+  const domain = 'maxr.dev';
   const email = user + '@' + domain;
 
   emailLink.addEventListener('click', (e) => {
