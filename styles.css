@@ -212,7 +212,7 @@ main a:hover, main a:active {
 }
 
 /* Media & Lightbox */
-img, iframe {
+img {
   max-width: 100%;
   width: 100%;
   height: auto;
@@ -229,6 +229,16 @@ img {
 
 img:active {
   transform: scale(0.99);
+}
+
+iframe {
+  display: block;
+  width: min(100%, 56rem);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
 }
 
 #lightbox {
