@@ -1,3 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <text x="50%" y="55%" dominant-baseline="central" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="14" fill="#a04000" style="letter-spacing: -0.05em;">MR</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- White background -->
+  <rect width="100" height="100" fill="#ffffff"/>
+
+  <!-- MR text centered -->
+  <text
+    x="50"
+    y="67"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="46"
+    font-weight="700"
+    fill="#111111"
+    text-anchor="middle"
+    letter-spacing="-1"
+  >MR</text>
 </svg>
