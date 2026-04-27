@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gameboy</title>
+    <title>gameboy emulator</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="../../styles.css" />
     <script src="../../script.js" defer></script>
@@ -17,7 +17,11 @@
     <hr />
     <main>
       <h3>Gameboy emulator</h3>
-      <p>TODO</p>
+      <p>Currently working on it.</p>
+			<p>I first wrote a good bit (instructions + memory mapping + timers) without much testing, so there was much to correct. I also went with globals back then (I thought the gameboy would have one global state, which should be fine), but it was so annoying since the code was written with those globals in mind. For example, I couldn't just make a separate .c file to just test the CPU instructions (with way simplified memory). I also don't like how the state could be changed by everything. A lot of people say that globals are bad, but I wanted to experience it (I mean a database is like a global variable, no? so globals aren't ALWAYS bad...).</p>
+			<p>I'm currently rewriting it with much cleaner architecture (according to the 2026 me, at least). That means explicitly passing the states, thoroughly testing everything non-trivial I implement before moving on (not TDD, but something more like <a href="https://matklad.github.io/2021/05/31/how-to-test.html" target="_blank" rel="noopener noreferrer">this</a> - I found this article clarified the "HOWTO" for testing for me, after I was trying out things myself on smaller projects with mixed results).</p>
+			<p>I also decided to do a unity build - the way Handmade Hero does it. This way it will be really easy to port it to STM32 later on, which I plan to do. I mean how cool would it be to have a handheld gameboy console of your own making?</p>
+			<p>Another thing I realized after my first attempt is that I should be spamming asserts whenever I can. It's not that obvious with smaller projects, I feel like, but with something of that scale it starts to get a bit more complicated. Asserts help find programmer errors (which are really hard to find, since usually you assert something you were assuming was true - with that assert you don't know that your assumption was bad), which is a big time (and fun) save.</p>
     </main>
     <footer>
       <div class="footer-content">
