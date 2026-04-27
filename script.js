@@ -37,21 +37,17 @@ function setupEmailProtection() {
 
   emailLink.addEventListener('click', (e) => {
     e.preventDefault();
-    
-    // Copy to clipboard
+
     navigator.clipboard.writeText(email).then(() => {
-      const originalText = emailLink.textContent;
-      emailLink.textContent = 'COPIED';
-      emailLink.classList.add('copied');
-      
-      setTimeout(() => {
-        emailLink.textContent = originalText;
-        emailLink.classList.remove('copied');
-      }, 1500);
-    });
-    
-    // Open mail client
-    window.location.assign('mailto:' + email);
+        const originalText = emailLink.textContent;
+        emailLink.textContent = 'COPIED';
+        emailLink.classList.add('copied');
+
+        setTimeout(() => {
+          emailLink.textContent = originalText;
+          emailLink.classList.remove('copied');
+        }, 1500);
+      });
   });
 }
 
