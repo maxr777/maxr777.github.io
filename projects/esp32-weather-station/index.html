@@ -25,21 +25,28 @@
 
       <img src="./schematic.png" alt="Schematic for the ESP32 weather station wiring" />
 
-			<p>Coding it was the hard part, since I wanted to make everything myself. The BME280 was a bit hard to setup, but getting the SH1106 to draw was the hardest part. So many small details (write A to B, then C to D, in that order, if you want to do X, but if you want to do Y do E to B first, then C to D, etc.). Thank god for Claude - made reading the datasheets so much easier.</p>
+			<p>Coding it was the hard part, since I wanted to make everything myself. The <code>BME280</code> was a bit hard to setup, but getting the <code>SH1106</code> to draw was the hardest part. So many small details:</p>
 
-			<p>I'm pretty happy with how it turned out, but I haven't finished making it really robust (able to plug in and out boards while it's running without restarting) - I go more into that at the end of this article. I was also trying out new stuff - especially Raylib's way of naming things and header only libraries. Regarding Raylib's way of naming things, it looks nice (camelCase for variables, PascalCase for functions), but it gets a bit problematic (e.g. 0 followed by O, or acronyms: e.g. GetLEDGPIO). I think <a href="https://tigerstyle.dev/#nouns-and-verbs">TigerStyle's</a> way of naming things is much better, and I'll use it in my next project.</p>
+			<blockquote>
+				Write A to B, then C to D, in that order, if you want to do X, but if you want to do Y do E to B first, then C to D, etc.
+			</blockquote>
+
+			<p>Thank god for Claude - made reading the datasheets so much easier.</p>
+
+			<p>I'm pretty happy with how it turned out, but I haven't finished making it really robust (able to plug in and out boards while it's running without restarting) - I go more into that at the end of this article. I was also trying out new stuff - especially Raylib's way of naming things and header only libraries. Regarding Raylib's way of naming things, it looks nice (camelCase for variables, PascalCase for functions), but it gets a bit problematic (e.g. 0 followed by O, or acronyms: e.g. <code>GetLEDGPIO</code>). I think <a href="https://tigerstyle.dev/#nouns-and-verbs">TigerStyle's</a> way of naming things is much better, and I'll use it in my next project.</p>
 
 			<p>I also wanted to try making some header only libraries (like <a href="https://github.com/nothings/stb">stb</a>), so I went with it for all the sensor stuff... But I don't really see the advantage/disadvantage to those? I mean, I suppose with .h/.c files I can make stuff "private" by just not exposing it in the API (in the .h file)? Also, a header file is easier to distribute than .h and .c, but that's a small difference. Maybe compile times? I think the project was too simple to see the difference. I was also the sole user, so it's not like I can notice how much easier it is to distribute.</p>
 
-			<p>After somewhat finishing it, I decided to make it more robust by moving the project onto a perfboard. Honestly, it was such a hassle - if I were to do it now, I'd just design and order a custom PCB. I think I could've positioned some components on the board better, and I'm also not that good with soldering, so the result looks a bit meh, but it works and is noticeably more structurally solid (e.g. I can spin it around by the PMS5003 while it works - no issues). At the end of the day, I don't think it matters much since I'll keep it in a 3D enclosure anyway (and if I wanted to make it look more professional, designing and ordering a PCB is the way to go anyway).</p>
+			<p>After somewhat finishing it, I decided to make it more robust by moving the project onto a perfboard. Honestly, it was such a hassle - if I were to do it now, I'd just design and order a custom PCB. I think I could've positioned some components on the board better, and I'm also not that good with soldering, so the result looks a bit meh, but it works and is noticeably more structurally solid (e.g. I can spin it around by the <code>PMS5003</code> while it works - no issues). At the end of the day, I don't think it matters much since I'll keep it in a 3D enclosure anyway (and if I wanted to make it look more professional, designing and ordering a PCB is the way to go anyway).</p>
 
 			<p>I was thorough with my soldering, checking each component’s connections with a multimeter after finishing work on it. It worked the first time, and the air quality in my room was awful after about two hours of soldering.</p>
 
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/DK9z5tJ5IRI" allowfullscreen></iframe>
 
-			<p>Unfortunately, I fried the BME280 while trying to make the station more robust (so that I can plug stuff in and out while it's running without any problems) - while testing changes to code, I mistakenly plugged the BME280 one pin off. I felt it getting really warm, and, by that time, it was already too late.</p>
+			<p>Unfortunately, I fried the <code>BME280</code> while trying to make the station more robust (so that it can plug stuff in and out while it's running without any problems) - while testing changes to code, I mistakenly plugged the <code>BME280</code> one pin off. I felt it getting really warm, and, by that time, it was already too late.</p>
 
-			<p>The end goal was to make some simple 3D enclosure for it (with some ample openings for airflow, of course), but now that it doesn't work it would be kinda pointless (can't showcase nor use it). I'll do that after I get another BME280 board - it's not exactly the cheapest weather sensor, but at this point I don't really care about rewriting the code, just want to get it to work.</p>
+						<p>The end goal was to make some simple 3D enclosure for it (with some ample openings for airflow, of course), but now that it doesn't work it would be kinda pointless (can't showcase nor use it). I'll do that after I get another <code>BME280</code> board - it's not exactly the cheapest weather sensor, but at this point I don't really care about rewriting the code, just want to get it to work.</p>
+
     </main>
     <footer>
       <div class="footer-content">
