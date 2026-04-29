@@ -5,6 +5,20 @@
   --secondary-color: #706a5a;
   --accent-color: #a04000;
   --border-color: #e5dcc3;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+  --link-underline: rgba(34, 34, 34, 0.2);
+}
+
+[data-theme="dark"] {
+  --bg-color: #1c1b17;
+  --text-color: #e3e1d8;
+  --secondary-color: #969282;
+  --accent-color: #e68a4d;
+  --border-color: #2d2b24;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+  --link-underline: rgba(227, 225, 216, 0.2);
 }
 
 html {
@@ -48,13 +62,13 @@ header, main, footer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--scrollbar-thumb);
   border-radius: 10px;
   border: 2px solid var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Physical Feedback */
@@ -73,12 +87,49 @@ header a:active, main a:active, .footer-right a:active {
   color: var(--text-color);
 }
 
+[data-theme="dark"] ::selection {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
 header {
+  position: relative;
   text-align: left;
   padding-top: 1rem;
   margin-bottom: 1rem;
   font-family: system-ui, -apple-system, sans-serif;
   letter-spacing: -0.01em;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  color: var(--secondary-color);
+}
+
+#theme-toggle:hover {
+  background-color: rgba(160, 64, 0, 0.1);
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] #theme-toggle:hover {
+  background-color: rgba(255, 157, 77, 0.1);
+}
+
+#theme-toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 header a {
@@ -210,8 +261,17 @@ pre {
   line-height: 1.45;
 }
 
+[data-theme="dark"] code {
+  background: rgba(230, 138, 77, 0.1);
+}
+
+[data-theme="dark"] pre {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
 pre code {
-  background: none;
+  background: none !important;
   padding: 0;
 }
 
@@ -242,8 +302,12 @@ header a:link, header a:visited, header a:hover, header a:active {
 main a {
   color: var(--text-color);
   text-decoration: none;
-  border-bottom: 1px solid rgba(34, 34, 34, 0.2);
+  border-bottom: 1px solid var(--link-underline);
   transition: all 0.2s ease;
+}
+
+[data-theme="dark"] #lightbox img {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 main a:visited {
@@ -263,7 +327,7 @@ img {
   display: block;
   margin: 1.5rem auto;
   border-radius: 6px;
-  border: 1px solid #ece3cb;
+  border: 1px solid var(--border-color);
   transition: transform 0.1s;
 }
 
@@ -282,7 +346,7 @@ iframe {
   height: auto;
   margin: 1.5rem auto;
   border-radius: 6px;
-  border: 1px solid #ece3cb;
+  border: 1px solid var(--border-color);
 }
 
 #lightbox {
@@ -300,6 +364,10 @@ iframe {
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
+}
+
+[data-theme="dark"] #lightbox {
+  background: rgba(18, 18, 18, 0.98);
 }
 
 #lightbox.active {
