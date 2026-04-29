@@ -189,20 +189,25 @@ blockquote {
 
 code {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 0.85em;
+  font-size: 0.8em;
   background: rgba(160, 64, 0, 0.05);
   padding: 0.2em 0.4em;
   border-radius: 4px;
+  tab-size: 2;
+  -moz-tab-size: 2;
 }
 
 pre {
   background: rgba(0, 0, 0, 0.02);
-  padding: 1.25rem;
+  padding: 1rem;
   overflow-x: auto;
   border-radius: 6px;
   text-align: left;
   margin: 1.5rem 0;
   border: 1px solid rgba(0, 0, 0, 0.03);
+  tab-size: 2;
+  -moz-tab-size: 2;
+  line-height: 1.45;
 }
 
 pre code {
