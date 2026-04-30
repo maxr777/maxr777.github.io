@@ -275,6 +275,14 @@ pre code {
   padding: 0;
 }
 
+pre code .code-comment {
+  color: #9aa3ad;
+}
+
+[data-theme="dark"] pre code .code-comment {
+  color: #6f7882;
+}
+
 /* Rest of your functional styles */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;

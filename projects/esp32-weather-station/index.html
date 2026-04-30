@@ -28,36 +28,36 @@
 			<p>Coding it was the hard part, since I wanted to make everything myself. The BME280 was a bit hard to setup, but getting the SH1106 to draw was the hardest part. So many small details (write A to B, then C to D, in that order, if you want to do X, but if you want to do Y do E to B first, then C to D, etc.). Thank god for Claude - made reading the datasheets so much easier. Here's an example of drawing a buffer to the OLED:</p>
 
 			<pre><code>static inline SH1106FlushErrorCodes SH1106Flush(SH1106 *sh) {
-	// Each page is 8 rows tall, the SH1106 basically thinks in terms of display[8][128]
+	<span class="code-comment">// Each page is 8 rows tall, the SH1106 basically thinks in terms of display[8][128]</span>
 	for (int page = 0; page < SH1106_HEIGHT / 8; ++page) {
 		u8 commands[] = {
-			// 0x00 indicates that the following are commands, not pixel data
+			<span class="code-comment">// 0x00 indicates that the following are commands, not pixel data</span>
 			0x00,
-			// 0xB0 = page 0, 0xB1 = page 1, ..., 0xB7 = page 7
+			<span class="code-comment">// 0xB0 = page 0, 0xB1 = page 1, ..., 0xB7 = page 7</span>
 			(u8)(0xB0 | page),
-			// Column addres is split into two nibbles - high nibble command is 0x1X, and low nibble is 0x0X
-			// I want to write the whole buffer in one go, so I start at column 2 (because the internal RAM of
-			// the SH1106 is 132 clumns wide, so the 128 visible pixels start at column 2)
-			// low nibble:
+			<span class="code-comment">// Column addres is split into two nibbles - high nibble command is 0x1X, and low nibble is 0x0X</span>
+			<span class="code-comment">// I want to write the whole buffer in one go, so I start at column 2 (because the internal RAM of</span>
+			<span class="code-comment">// the SH1106 is 132 clumns wide, so the 128 visible pixels start at column 2)</span>
+			<span class="code-comment">// low nibble:</span>
 			0x02,
-			// high nibble:
+			<span class="code-comment">// high nibble:</span>
 			0x10,
 		};
 
 		if (i2c_master_transmit(sh->handle, commands, sizeof(commands), pdMS_TO_TICKS(200)) != ESP_OK) return SH_COMMANDS_TRANSMIT_FAIL;
 
-		// +1 because of the control byte, 0x40
+		<span class="code-comment">// +1 because of the control byte, 0x40</span>
 		u8 data[SH1106_WIDTH + 1];
-		// Control byte, means everything the follows is pixel data
+		<span class="code-comment">// Control byte, means everything the follows is pixel data</span>
 		data[0] = 0x40;
-		// Each iteration builds the byte below
+		<span class="code-comment">// Each iteration builds the byte below</span>
 		for (int x = 0; x < SH1106_WIDTH; ++x) {
-			// Represents all 8 vertical pixels in the current page at column x, start with all off
+			<span class="code-comment">// Represents all 8 vertical pixels in the current page at column x, start with all off</span>
 			u8 byte = 0;
 			for (int bit = 0; bit < 8; ++bit) {
-				// Look the current pixel up - if it's on, set the corresponding bit in the byte
-				// page * 8 + bit = page * 8 gets me to the first row of this page and + bit moves down to
-				// the specific row within it. E.g. for page 2 and bit 3 the row is 19 (row = 2 * 8 + 3 = 19)
+				<span class="code-comment">// Look the current pixel up - if it's on, set the corresponding bit in the byte</span>
+				<span class="code-comment">// page * 8 + bit = page * 8 gets me to the first row of this page and + bit moves down to</span>
+				<span class="code-comment">// the specific row within it. E.g. for page 2 and bit 3 the row is 19 (row = 2 * 8 + 3 = 19)</span>
 				if (sh->screen[x][page * 8 + bit])
 					byte |= (1 << bit);
 			}
@@ -70,7 +70,7 @@
 	return SH_OK;
 }</code></pre>
 
-			<p>I'm pretty happy with how it turned out, but I haven't finished making it really robust (able to plug in and out boards while it's running without restarting) - I go more into that at the end of this article. I was also trying out new stuff - especially Raylib's way of naming things and header only libraries. Regarding Raylib's way of naming things, it looks nice (camelCase for variables, PascalCase for functions), but it gets a bit problematic (e.g. <code>0</code> followed by <code>O</code>, or acronyms: e.g. <code>GetLEDGPIO</code>). I think <a href="https://tigerstyle.dev/#nouns-and-verbs">TigerStyle's</a> way of naming things (quoted below) is much better, and I'll try it out in my next project. I also need to think a bit about how to use enums to return error codes - I feel like I was way too verbose with the naming.</p>
+			<p>I'm pretty happy with how it turned out, but I haven't finished making it really robust (able to plug in and out boards while it's running without restarting) - I go more into that at the end of this article. I was also trying out new stuff - especially Raylib's way of naming things and header only libraries. Regarding Raylib's way of naming things, it looks nice (camelCase for variables, PascalCase for functions), but it gets a bit problematic (e.g. <code>0</code> followed by <code>O</code>, or acronyms: e.g. <code>GetLEDGPIO</code>). I think <a href="https://tigerstyle.dev/#nouns-and-verbs" target="_blank" rel="noopener noreferrer">TigerStyle's</a> way of naming things (quoted below) is much better, and I'll try it out in my next project. I also need to think a bit about how to use enums to return error codes - I feel like I was way too verbose with the naming.</p>
 
 			<blockquote>
 				Great names are the essence of great code, capturing what a thing is or does, for a crisp mental model.
@@ -83,7 +83,7 @@
 				</ul>
 			</blockquote>
 
-			<p>I also wanted to try making some header only libraries (like <a href="https://github.com/nothings/stb">stb</a>), so I went with it for all the sensor stuff... But I don't really see the advantage/disadvantage to those? I mean, I suppose with .h/.c files I can make stuff "private" by just not exposing it in the API (in the .h file)? Also, a header file is easier to distribute than .h and .c, but that's a small difference. Maybe compile times? I think the project was too simple to see the difference. I was also the sole user, so it's not like I can notice how much easier it is to distribute.</p>
+			<p>I also wanted to try making some header only libraries (like <a href="https://github.com/nothings/stb" target="_blank" rel="noopener noreferrer">stb</a>), so I went with it for all the sensor stuff... But I don't really see the advantage/disadvantage to those? I mean, I suppose with .h/.c files I can make stuff "private" by just not exposing it in the API (in the .h file)? Also, a header file is easier to distribute than .h and .c, but that's a small difference. Maybe compile times? I think the project was too simple to see the difference. I was also the sole user, so it's not like I can notice how much easier it is to distribute.</p>
 
 			<p>After somewhat finishing it, I decided to make it more robust by moving the project onto a perfboard. Honestly, it was such a hassle - if I were to do it now, I'd just design and order a custom PCB. I think I could've positioned some components on the board better, and I'm also not that good with soldering, so the result looks a bit meh, but it works and is noticeably more structurally solid (e.g. I can spin it around by the PMS5003 while it works - no issues). At the end of the day, I don't think it matters much since I'll keep it in a 3D enclosure anyway (and if I wanted to make it look more professional, designing and ordering a PCB is the way to go anyway).</p>
 
@@ -100,8 +100,8 @@
       <div class="footer-content">
         <div class="footer-left">Max Romanowski</div>
         <div class="footer-right">
-          <a href="https://github.com/maxr777">GITHUB</a>
           <a id="email-link" href="#">EMAIL</a>
+          <a href="https://github.com/maxr777" target="_blank" rel="noopener noreferrer">GITHUB</a>
         </div>
       </div>
     </footer>
