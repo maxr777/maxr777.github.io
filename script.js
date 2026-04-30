@@ -14,7 +14,7 @@ function setupTheme() {
   const header = document.querySelector('header');
   if (!header) return;
 
-  const toggle = document.createElement('div');
+  const toggle = document.createElement('button');
   toggle.id = 'theme-toggle';
   toggle.setAttribute('aria-label', 'Toggle theme');
   
@@ -45,20 +45,51 @@ function setupLightbox() {
 
   const lightbox = document.createElement('div');
   lightbox.id = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Image preview');
   document.body.appendChild(lightbox);
 
+  let lastFocusedElement = null;
+
+  const openLightbox = (img) => {
+    lastFocusedElement = document.activeElement;
+    const fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt || 'Full size image';
+    while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
+    lightbox.appendChild(fullImg);
+    lightbox.classList.add('active');
+    lightbox.setAttribute('tabindex', '0');
+    lightbox.focus();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    lightbox.removeAttribute('tabindex');
+    if (lastFocusedElement) lastFocusedElement.focus();
+  };
+
   images.forEach(img => {
-    img.addEventListener('click', () => {
-      const fullImg = document.createElement('img');
-      fullImg.src = img.src;
-      while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
-      lightbox.appendChild(fullImg);
-      lightbox.classList.add('active');
+    img.setAttribute('role', 'button');
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('aria-label', 'Zoom image');
+    
+    img.addEventListener('click', () => openLightbox(img));
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img);
+      }
     });
   });
 
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('active');
+  lightbox.addEventListener('click', closeLightbox);
+  
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
   });
 }
 

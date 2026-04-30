@@ -6,7 +6,7 @@
   --line-height: 1.7;
   --bg-color: #f6eed6;
   --text-color: #222222;
-  --secondary-color: #706a5a;
+  --secondary-color: #625d50;
   --accent-color: #a04000;
   --border-color: #e5dcc3;
   --scrollbar-thumb: rgba(0, 0, 0, 0.25);
@@ -17,7 +17,7 @@
 [data-theme="dark"] {
   --bg-color: #1c1b17;
   --text-color: #e3e1d8;
-  --secondary-color: #969282;
+  --secondary-color: #a19d8e;
   --accent-color: #e68a4d;
   --border-color: #2d2b24;
   --scrollbar-thumb: rgba(255, 255, 255, 0.1);
@@ -50,6 +50,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Accessibility: Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+header a:focus-visible, 
+.footer-right a:focus-visible, 
+.footer-right button:focus-visible {
+  border-radius: 4px;
+}
+
+#theme-toggle:focus-visible {
+  border-radius: 50%;
+}
+
+main img:focus-visible {
+  border-radius: 8px;
+  outline-offset: 4px;
+}
+
 /* Stable Entrance */
 header, main, footer {
   animation: fadeIn 0.5s cubic-bezier(0.2, 0, 0.2, 1) both;
@@ -75,7 +97,7 @@ header, main, footer {
 }
 
 /* Physical Feedback */
-header a:active, main a:active, .footer-right a:active {
+header a:active, main a:active, .footer-right a:active, .footer-right button:active {
   transform: scale(0.98);
   transition: transform 0.1s;
 }
@@ -116,6 +138,8 @@ header {
   border-radius: 50%;
   transition: background-color 0.2s;
   color: var(--secondary-color);
+  background: none;
+  border: none;
 }
 
 #theme-toggle:hover {
@@ -144,7 +168,7 @@ header a {
   opacity: 0.8;
 }
 
-header a.current-page {
+header a.current-page, header a[aria-current="page"] {
   color: var(--accent-color);
   font-weight: 500;
   opacity: 1;
@@ -209,16 +233,22 @@ footer {
   color: var(--accent-color);
 }
 
-.footer-right a {
+.footer-right a, .footer-right button {
   margin-left: 1.5rem;
   color: inherit;
   text-decoration: none;
   transition: transform 0.2s ease, color 0.2s ease;
   cursor: pointer;
   display: inline-block;
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
-.footer-right a:hover {
+.footer-right a:hover, .footer-right button:hover {
   color: var(--text-color);
   transform: translateY(-1px);
 }
