@@ -205,7 +205,6 @@ footer {
 
 #email-link.copied {
   color: var(--accent-color);
-  transition: color 0.2s;
 }
 
 .footer-right a {
