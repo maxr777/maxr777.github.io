@@ -293,7 +293,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .no-indent li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 header a:link, header a:visited, header a:hover, header a:active {
