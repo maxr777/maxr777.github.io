@@ -15,14 +15,14 @@
 }
 
 [data-theme="dark"] {
-  --bg-color: #1c1b17;
-  --text-color: #e3e1d8;
-  --secondary-color: #a19d8e;
+  --bg-color: #121212;
+  --text-color: #e3e3e3;
+  --secondary-color: #a0a0a0;
   --accent-color: #e68a4d;
-  --border-color: #2d2b24;
+  --border-color: #2a2a2a;
   --scrollbar-thumb: rgba(255, 255, 255, 0.1);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
-  --link-underline: rgba(227, 225, 216, 0.2);
+  --link-underline: rgba(227, 227, 227, 0.2);
 }
 
 html {
@@ -113,7 +113,7 @@ header a:active, main a:active, .footer-right a:active, .footer-right button:act
 }
 
 [data-theme="dark"] ::selection {
-  background-color: rgba(56, 54, 45, 0.85);
+  background-color: rgba(60, 60, 60, 0.85);
   color: #ffffff;
 }
 
